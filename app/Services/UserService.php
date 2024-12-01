@@ -18,7 +18,8 @@ class UserService
     public function getAllUsers()
     {
         $perPage = intval(request('per_page'));
-        $users = $perPage ? $this->userRepository->paginate($perPage) : $this->userRepository->getAll();
+        $page = intval(request('page'));
+        $users = $page ? $this->userRepository->paginate($perPage) : $this->userRepository->getAll();
         return UserResource::collection($users);
     }
 
